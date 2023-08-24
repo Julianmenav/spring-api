@@ -12,6 +12,7 @@ public abstract class Character {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Long userId;
     private String name;
     @Column(name="character_type", insertable=false, updatable=false)
     private String characterType;
@@ -25,7 +26,8 @@ public abstract class Character {
     private int stamina;
 
     public Character(){}
-    public Character( String name, String characterType, int health, int healthLevelIncrease, int strength, int magic, int stamina) {
+    public Character( Long userId, String name, String characterType, int health, int healthLevelIncrease, int strength, int magic, int stamina) {
+        this.userId = userId;
         this.name = name;
         this.characterType = characterType;
         this.level = 1;

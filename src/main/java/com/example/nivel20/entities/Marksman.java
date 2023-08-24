@@ -7,8 +7,8 @@ import jakarta.persistence.Entity;
 @DiscriminatorValue("MARKSMAN")
 public class Marksman extends Character {
     public Marksman(){}
-    public Marksman(String name) {
-        super(name, "MARKSMAN", 6, 2, 1, 0, 2);
+    public Marksman(Long userId, String name) {
+        super(userId, name, "MARKSMAN", 6, 2, 1, 0, 2);
     }
 
 }

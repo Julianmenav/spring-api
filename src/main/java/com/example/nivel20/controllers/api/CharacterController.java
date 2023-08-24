@@ -1,4 +1,4 @@
-package com.example.nivel20.controllers;
+package com.example.nivel20.controllers.api;
 
 import com.example.nivel20.entities.Character;
 import com.example.nivel20.repositories.CharacterRepository;

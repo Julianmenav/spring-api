@@ -8,8 +8,8 @@ import jakarta.persistence.Entity;
 public class Warrior extends Character {
 
     public Warrior(){}
-    public Warrior(String name) {
-        super(name, "WARRIOR", 8, 3, 2, 0, 1);
+    public Warrior(Long userId, String name) {
+        super(userId, name, "WARRIOR", 8, 3, 2, 0, 1);
     }
 
 
