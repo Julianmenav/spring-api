@@ -4,6 +4,8 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 src/main/resources/application.properties
+node_modules
+main.css
 
 ### STS ###
 .apt_generated
