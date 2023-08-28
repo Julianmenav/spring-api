@@ -6,10 +6,10 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Auth</title>
+    <title>Dashboard</title>
 </head>
 <body>
-    <h1 class="pt-10 text-bold text-6xl w-full text-center">Auth</h1>
+    <h1 class="pt-10 text-bold text-6xl w-full text-center">Dashboard</h1>
     <ul class="w-full py-16 px-40 flex flex-wrap justify-between ">
         <li  th:each="character : ${characters}">
             <span class="text-xl font-bold" th:text="${character.name}"></span>

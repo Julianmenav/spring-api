@@ -15,12 +15,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-public class homeController {
+public class viewController {
 
     private final CharacterRepository characterRepository;
     private final UserRepository userRepository;
 
-    public homeController(CharacterRepository characterRepository, UserRepository userRepository) {
+    public viewController(CharacterRepository characterRepository, UserRepository userRepository) {
         this.characterRepository = characterRepository;
         this.userRepository = userRepository;
     }
@@ -30,24 +30,21 @@ public class homeController {
         return "index";
     }
 
-    @GetMapping("/auth")
+    @GetMapping("/dashboard")
     public String auth(Model model){
 
+        //Auth check and save if new user
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         OAuth2User oauthUser = (OAuth2User) authentication.getPrincipal();
         Integer oauthId = oauthUser.getAttribute("id");
 
-        System.out.println(oauthId);
-
         Optional<User> optUser = userRepository.findByOauthId(oauthId);
-        User user = optUser.orElseGet(() -> new User(oauthUser));
-        userRepository.save(user);
 
-        List<Character> characters = characterRepository.findByUserId(user.getId());
+        List<Character> characters = characterRepository.findByUserId(optUser.get().getId());
 
         model.addAttribute("info", authentication);
         model.addAttribute("characters", characters);
-        return "auth";
+        return "dashboard";
     }
 
 
