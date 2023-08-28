@@ -27,7 +27,7 @@ public class User {
     }
 
     public User(OAuth2User oauthUser){
-        this.username = oauthUser.getAttribute("name");
+        this.username = oauthUser.getAttribute("login");
         this.oauthId = oauthUser.getAttribute("id");
         this.registrationProvider = RegistrationProvider.GITHUB;
     }
