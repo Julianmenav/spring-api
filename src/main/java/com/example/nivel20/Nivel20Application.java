@@ -19,15 +19,6 @@ public class Nivel20Application {
 		CharacterRepository characterRepo = context.getBean(CharacterRepository.class);
 
 
-		Character char1 = new Warrior(1L,"Zink");
-		Character char2 = new Mage(1L, "judas");
-		Character char3 = new Marksman(1L, "kixy");
-
-//		CRUD
-//		Create
-		characterRepo.save(char1);
-		characterRepo.save(char2);
-		characterRepo.save(char3);
 	}
 
 }
