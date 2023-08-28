@@ -8,9 +8,8 @@ import com.example.nivel20.requests.CreateCharacterRequest;
 
 public class CharacterFactory {
 
-    public static Character createCharacter(CreateCharacterRequest request){
+    public static Character createCharacter(CreateCharacterRequest request, Long userId){
 
-        Long userId = request.getUserId();
         String name = request.getName();
         String character_type = request.getCharacter_type();
 

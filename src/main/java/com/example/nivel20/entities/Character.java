@@ -40,6 +40,10 @@ public abstract class Character {
         this.stamina = stamina;
     }
 
+    public Long getUserId() {
+        return userId;
+    }
+
     public int getExperience() {
         return experience;
     }
