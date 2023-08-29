@@ -27,26 +27,23 @@ public class viewController {
 
     @GetMapping("/")
     public String index(Model model){
-        return "index";
-    }
-
-    @GetMapping("/dashboard")
-    public String auth(Model model){
-
-        //Auth check and save if new user
+        //Auth Check
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if(!(authentication.getPrincipal() instanceof OAuth2User)){
+            model.addAttribute("user", null);
+            model.addAttribute("characters", null);
+            return "index";
+        }
+
         OAuth2User oauthUser = (OAuth2User) authentication.getPrincipal();
         Integer oauthId = oauthUser.getAttribute("id");
 
         Optional<User> optUser = userRepository.findByOauthId(oauthId);
-
         List<Character> characters = characterRepository.findByUserId(optUser.get().getId());
 
-        model.addAttribute("info", authentication);
+        model.addAttribute("user", oauthUser);
         model.addAttribute("characters", characters);
-        return "dashboard";
+        return "index";
     }
-
-
-
 }

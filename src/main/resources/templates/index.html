@@ -7,8 +7,35 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link th:href="@{/main.css}" rel="stylesheet" /> 
     <title>Nivel20</title>
+    <script th:inline="javascript">
+        let user = /*[[${user}]]*/
+        let chars = /*[[${characters}]]*/
+        console.log(user)
+        console.log(chars)
+    </script>
 </head>
-<body>
-    <h1 class="pt-10 text-5xl w-full text-center bg-green-50 font-bold">FrontPage</h1>
+<body class="w-screen h-screen flex flex-col">
+    <nav class="flex justify-between items-center py-4 px-2 bg-green-200 text-green-700">
+        <p>Spring API lvl 20</p>
+        <div>
+            <div th:if="${user != null}">
+                <div class="flex gap-1">
+                    <p th:text="${user.attributes['login']}"></p>
+                    <img th:src="${user.attributes['avatar_url']}" alt="avatar_img" class="w-6 h-6 rounded-full">
+                </div>
+                <a href="/logout" class="text-red-500 text-xs text-center">Logout</a>
+            </div>
+            <div th:unless="${user != null}">
+                <a href="/login">Login</a>
+            </div>
+        </div>
+    </nav>
+    <section th:if="${user != null}" class="flex-1 bg-brown-200">
+        <ul class="w-full py-16 px-40 flex flex-wrap justify-between ">
+            <li  th:each="character : ${characters}">
+                <span class="text-xl font-bold" th:text="${character.name}"></span>
+            </li>
+        </ul>
+    </section>
 </body>
 </html>

@@ -10,10 +10,19 @@ import org.springframework.security.web.SecurityFilterChain;
 
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig {
-
     @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("/");
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        return http
+                .authorizeHttpRequests( auth -> {
+                    auth.requestMatchers("/","/main.css").permitAll();
+                    auth.anyRequest().authenticated();
+                })
+                .oauth2Login(customizer ->
+                        customizer.defaultSuccessUrl("/", true)
+                )
+                .build();
     }
+
 }
