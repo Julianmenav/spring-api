@@ -1,4 +1,4 @@
-package com.example.nivel20.controllers.auth;
+package com.example.nivel20.services;
 
 import com.example.nivel20.entities.User;
 import com.example.nivel20.repositories.UserRepository;
