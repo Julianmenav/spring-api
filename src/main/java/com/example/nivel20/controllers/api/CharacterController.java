@@ -8,7 +8,6 @@ import com.example.nivel20.repositories.UserRepository;
 import com.example.nivel20.requests.CreateCharacterRequest;
 import com.example.nivel20.requests.UpgradeStatsRequest;
 import com.example.nivel20.services.CharacterFactory;
-import org.apache.coyote.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
