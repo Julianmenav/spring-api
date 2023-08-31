@@ -12,15 +12,16 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http
-                .authorizeHttpRequests( auth -> {
-                    auth.requestMatchers("/","/main.css").permitAll();
-                    auth.anyRequest().authenticated();
-                })
-                .oauth2Login(customizer ->
-                        customizer.defaultSuccessUrl("/", true)
-                )
-                .build();
+        http
+            .authorizeHttpRequests( auth -> {
+                auth.requestMatchers("/","/main.css", "/pruebita").permitAll();
+                auth.anyRequest().authenticated();
+            })
+            .oauth2Login(customizer ->
+                    customizer.defaultSuccessUrl("/", true)
+            )
+            .csrf((csrf) -> csrf.disable());
+        return http.build();
     }
 
 }

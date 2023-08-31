@@ -6,36 +6,49 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link th:href="@{/main.css}" rel="stylesheet" /> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <title>Nivel20</title>
-    <script th:inline="javascript">
-        let user = /*[[${user}]]*/
-        let chars = /*[[${characters}]]*/
-        console.log(user)
-        console.log(chars)
-    </script>
 </head>
-<body class="w-screen h-screen flex flex-col">
-    <nav class="flex justify-between items-center py-4 px-2 bg-green-200 text-green-700">
+<body class="w-screen h-screen flex flex-col select-none">
+    <nav class="flex justify-between items-center py-4 px-6 bg-white shadow-xl text-zinc-800 font-bold text-lg">
         <p>Spring API lvl 20</p>
-        <div>
+        <div class="px-4">
             <div th:if="${user != null}">
                 <div class="flex gap-1">
                     <p th:text="${user.attributes['login']}"></p>
                     <img th:src="${user.attributes['avatar_url']}" alt="avatar_img" class="w-6 h-6 rounded-full">
                 </div>
-                <a href="/logout" class="text-red-500 text-xs text-center">Logout</a>
-            </div>
-            <div th:unless="${user != null}">
-                <a href="/login">Login</a>
+                <a href="/logout" class="text-red-500 text-xs text-right w-full">Logout</a>
             </div>
         </div>
     </nav>
-    <section th:if="${user != null}" class="flex-1 bg-brown-200">
-        <ul class="w-full py-16 px-40 flex flex-wrap justify-between ">
+    <section th:if="${user != null}" class="flex-1 bg-zinc-200">
+        <ul class="w-full flex flex-wrap justify-around px-4 lg:px-32 py-12 gap-2 ">
             <li  th:each="character : ${characters}">
-                <span class="text-xl font-bold" th:text="${character.name}"></span>
+                <div class="relative card rounded-md shadow-md border border-black p-3 w-44 bg-zinc-100 hover:bg-zinc-200">
+                    <a th:href="@{/character/{id}(id=${character.id})}" class="w-full h-full absolute"></a>
+                    <div class="flex gap-3 items-center justify-start">
+                        <img class="w-6 h-6 rounded-full border border-black" alt="sword" src="https://img.freepik.com/premium-vector/sword-pixel-art-gaming-item-game-pixel-sword_158677-574.jpg?w=2000"  >
+                        <div class="">
+                            <p class="text-lg overflow-ellipsis" th:text="${character.name}"></p>
+                            <p class="text-xs text-zinc-500"><span th:text="${character.characterType}"> </span> LvL <span th:text="${character.level}"></span></p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 place-items-center my-4 gap-y-2">
+                        <p><span th:text="${character.health}"></span> ❤️</p>
+                        <p><span th:text="${character.strength}"></span> ⚔️</p>
+                        <p><span th:text="${character.magic}"></span> 🔮</p>
+                        <p><span th:text="${character.stamina}"></span> 💚</p>
+                    </div>
+                </div>
             </li>
         </ul>
+    </section>
+    <section th:unless="${user != null}" class="flex-1 bg-zinc-200 flex justify-center items-center">
+        <div class="flex flex-col items-center -translate-y-20">
+            <p class="font-monse text-5xl sm:text-6xl md:text-7xl lg:text-9xl">LEVEL 20</p>
+            <a href="/login" class="rounded-md border border-black bg-white shadow-md px-3 py-0.5 mt-6">Login</a>
+        </div>
     </section>
 </body>
 </html>

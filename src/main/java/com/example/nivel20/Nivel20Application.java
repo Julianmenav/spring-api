@@ -10,7 +10,6 @@ public class Nivel20Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Nivel20Application.class, args);
-
 	}
 
 }
