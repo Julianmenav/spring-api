@@ -31,12 +31,14 @@
         </div>
         <ul class="w-full flex flex-wrap justify-around px-4 lg:px-32 py-12 gap-2 ">
             <li  th:each="character : ${characters}">
-                <div class="relative card rounded-md shadow-md border border-black p-3 w-44 bg-zinc-100 hover:bg-zinc-200">
-                    <a th:href="@{/character/{id}(id=${character.id})}" class="w-full h-full absolute"></a>
-                    <div class="flex gap-3 items-center justify-start">
-                        <img class="w-6 h-6 rounded-full border border-black" alt="sword" src="https://img.freepik.com/premium-vector/sword-pixel-art-gaming-item-game-pixel-sword_158677-574.jpg?w=2000"  >
-                        <div class="">
-                            <p class="text-lg overflow-ellipsis" th:text="${character.name}"></p>
+                <div class="relative card rounded-md shadow-md border border-black p-3 w-44 bg-zinc-100 hover:bg-zinc-200 overflow-hidden">
+                    <a th:href="@{/character/{id}(id=${character.id})}" class="w-full h-full absolute top-0 left-0"></a>
+                    <div class="flex gap-3 items-center justify-start w-full">
+                        <img th:if="${character.characterType} == WARRIOR" class="w-6 h-6 rounded-full border border-black" alt="sword" src="https://img.freepik.com/premium-vector/sword-pixel-art-gaming-item-game-pixel-sword_158677-574.jpg?w=2000"  >
+                        <img th:if="${character.characterType} == MAGE" class="w-6 h-6 rounded-full border border-black" alt="sword" src="https://img.freepik.com/premium-vector/sword-pixel-art-gaming-item-game-pixel-sword_158677-574.jpg?w=2000"  >
+                        <img th:if="${character.characterType} == MARKSMAN" class="w-6 h-6 rounded-full border border-black" alt="sword" src="https://img.freepik.com/premium-vector/sword-pixel-art-gaming-item-game-pixel-sword_158677-574.jpg?w=2000"  >
+                        <div class="flex-1">
+                            <p class="text-lg w-full whitespace-nowrap" th:text="${character.name}"></p>
                             <p class="text-xs text-zinc-500"><span th:text="${character.characterType}"> </span> LvL <span th:text="${character.level}"></span></p>
                         </div>
                     </div>
