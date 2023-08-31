@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link th:href="@{/main.css}" rel="stylesheet" /> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script th:src="@{/js/index.js}" defer></script>
     <title>Nivel20</title>
 </head>
 <body class="w-screen h-screen flex flex-col select-none">
@@ -22,7 +23,12 @@
             </div>
         </div>
     </nav>
-    <section th:if="${user != null}" class="flex-1 bg-zinc-200">
+    <section th:if="${user != null}" class="flex-1 bg-zinc-200 relative">
+        <div class="absolute top-2 left-2">
+            <button id="createCharacter" class="rounded-md bg-orange-300 text-orange-500 w-5 h-5 p-3 text-xl font-bold flex justify-center items-center">
+                <span>+</span>
+            </button>
+        </div>
         <ul class="w-full flex flex-wrap justify-around px-4 lg:px-32 py-12 gap-2 ">
             <li  th:each="character : ${characters}">
                 <div class="relative card rounded-md shadow-md border border-black p-3 w-44 bg-zinc-100 hover:bg-zinc-200">
@@ -43,6 +49,16 @@
                 </div>
             </li>
         </ul>
+        <div id="modalOverlay" class="hidden">
+            <div id="modalBackground" class="w-screen h-screen bg-black/40 fixed top-0 left-0 flex justify-center items-center">
+                <div id="modal" class="w-[250px] rounded-md bg-white p-5 flex flex-col gap-1">
+                    <input type="text" id="characterName" placeholder="Enter character name" class="w-full text-center py-2 px-3 border-2 border-black rounded-sm">
+                    <button disabled charType="WARRIOR" class="selectCharacter px-3 py-1 rounded-md border border-black w-full bg-orange-500 font-bold text-white enabled:active:translate-y-0.5 opacity-30">Warrior</button>
+                    <button disabled charType="MAGE" class="selectCharacter px-3 py-1 rounded-md border border-black w-full bg-blue-500 font-bold text-white enabled:active:translate-y-0.5 opacity-30">Mage</button>
+                    <button disabled charType="MARKSMAN" class="selectCharacter px-3 py-1 rounded-md border border-black w-full bg-green-500 font-bold text-white enabled:active:translate-y-0.5 opacity-30">Marksman</button>
+                </div>
+            </div>
+        </div>
     </section>
     <section th:unless="${user != null}" class="flex-1 bg-zinc-200 flex justify-center items-center">
         <div class="flex flex-col items-center -translate-y-20">

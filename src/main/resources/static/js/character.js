@@ -94,11 +94,12 @@ $("#deleteCharacter").click(function() {
     },
     error: function(textStatus) {
         console.error("Error", textStatus);
+    },
+    complete: function() {
+        window.location.href = "/";
+        location.reload()
     }
     });
-
-    window.location.href = "/"
-
 })
 
 function updateStatsButtons() {
