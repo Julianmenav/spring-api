@@ -81,8 +81,24 @@ $("#confirmBtn").click(function() {
         console.error("Error", textStatus);
     }
     });
+})
 
-    
+$("#deleteCharacter").click(function() {
+    const characterId = $("#character").attr("characterid");
+
+    $.ajax({
+    type: "DELETE",
+    url: `/api/characters/${characterId}`,
+    success: function(data) {
+        console.log("Success", data);
+    },
+    error: function(textStatus) {
+        console.error("Error", textStatus);
+    }
+    });
+
+    window.location.href = "/"
+
 })
 
 function updateStatsButtons() {

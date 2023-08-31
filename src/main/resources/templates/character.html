@@ -36,7 +36,7 @@
             </p>
         </div>
     </section>
-    <section class="flex-1 bg-zinc-200 flex justify-center items-start pt-12 relative" th:if="${valid}">
+    <section class="flex-1 bg-zinc-200 flex flex-col justify-start items-center gap-10 pt-12 relative" th:if="${valid}">
         <div class="absolute top-2 left-2 text-red-600">
             <a class="flex items-center justify-center gap-1" href="/">
                 <span>Go back</span>
@@ -112,6 +112,7 @@
                 </div>
             </div>
         </div>
+        <button id="deleteCharacter" class="rounded-md bg-red-600 text-red-200 font-bold px-4 py-2 active:translate-y-0.5">Delete character</button>
     </section>
 </body>
 </html>
